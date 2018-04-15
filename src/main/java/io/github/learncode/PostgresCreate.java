@@ -1,30 +1,29 @@
 package io.github.learncode;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PostgresCreate {
-    public static void main(String args[]) {
-        Connection c = null;
-        Statement stmt = null;
-        try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/testdb",
-                            "manisha", "123");
-            System.out.println("Opened database successfully");
+    private static Connection con;
+    private static Statement stmt = null;
+    private static ResultSet rs = null;
+    private static String sql = "CREATE TABLE COMPANY " +
+            "(ID INT PRIMARY KEY     NOT NULL," +
+            " NAME           TEXT    NOT NULL, " +
+            " AGE            INT     NOT NULL, " +
+            " ADDRESS        CHAR(50), " +
+            " SALARY         REAL)";
 
-            stmt = c.createStatement();
-            String sql = "CREATE TABLE COMPANY " +
-                    "(ID INT PRIMARY KEY     NOT NULL," +
-                    " NAME           TEXT    NOT NULL, " +
-                    " AGE            INT     NOT NULL, " +
-                    " ADDRESS        CHAR(50), " +
-                    " SALARY         REAL)";
-            stmt.executeUpdate(sql);
+    public static void main(String args[]) {
+        try {
+            con = ConnectionManager.getConnection();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
             stmt.close();
-            c.close();
+            con.close();
+            rs.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
