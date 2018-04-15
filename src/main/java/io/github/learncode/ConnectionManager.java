@@ -11,7 +11,6 @@ public class ConnectionManager {
     private static String password = "123";
     private static Connection con;
 
-
     public static Connection getConnection() {
         try {
             Class.forName(driverName);
@@ -20,12 +19,12 @@ public class ConnectionManager {
 
                 System.out.println("Opened database successfully");
             } catch (SQLException ex) {
-                // log an exception. fro example:
                 System.out.println("Failed to create the database connection.");
+                ex.printStackTrace();
             }
         } catch (ClassNotFoundException ex) {
-            // log an exception. for example:
             System.out.println("Driver not found.");
+            ex.printStackTrace();
         }
         return con;
     }

@@ -36,10 +36,9 @@ public class PostgresSelect extends SuperClass {
             stmt.close();
             con.close();
             rs.close();
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            System.out.println("Operation done successfully");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        System.out.println("Operation done successfully");
     }
 }

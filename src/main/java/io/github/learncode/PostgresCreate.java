@@ -24,10 +24,9 @@ public class PostgresCreate {
             stmt.close();
             con.close();
             rs.close();
-        } catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
+            System.out.println("Table created successfully");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        System.out.println("Table created successfully");
     }
 }

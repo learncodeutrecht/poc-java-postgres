@@ -34,10 +34,11 @@ public class PostgresInsert {
             stmt.close();
             con.close();
             rs.close();
+            System.out.println("Records created successfully");
         } catch (Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
-        System.out.println("Records created successfully");
+
     }
 }
